@@ -7,7 +7,7 @@ import pygame
 # --- CONFIGURATION ---
 MUSIC_FOLDER = "."
 
-# Each pose now includes: ("Pose Name", Duration in seconds, "image_filename.png")
+# Each pose includes: ("Pose Name", Duration in seconds, "image_filename.png")
 YOGA_POSES = [
     ("Mountain Pose (Tadasana)", 10, "mountain.png"),
     ("Downward-Facing Dog (Adho Mukha Svanasana)", 15, "downward_dog.png"),
@@ -16,15 +16,16 @@ YOGA_POSES = [
     ("Child's Pose (Balasana)", 20, "childs_pose.png")
 ]
 
-# Aesthetic Palette
-COLOR_BG = "#F4F6F0"
-COLOR_CARD = "#FFFFFF"
-COLOR_PRIMARY = "#5B7065"
-COLOR_ACCENT = "#889C8C"
-COLOR_TEXT = "#2C3E35"
-COLOR_SUBTEXT = "#6C7A72"
-COLOR_BTN = "#7A8F82"
-COLOR_BTN_HOVER = "#667A6D"
+# --- SVT AESTHETIC PALETTE (Rose Quartz & Serenity) ---
+COLOR_BG = "#FDF6F7"          # Soft off-white with rose tint
+COLOR_CARD = "#FFFFFF"        # Pure white
+COLOR_SERENITY = "#B5C9D4"    # SVT Serenity (Soft Pastel Blue)
+COLOR_ROSE = "#F7C8E0"        # SVT Rose Quartz (Soft Pastel Pink)
+COLOR_TEXT = "#333333"        # Soft dark charcoal
+COLOR_SUBTEXT = "#888888"     # Muted grey
+COLOR_BTN = "#B5C9D4"         # Serenity button
+COLOR_BTN_HOVER = "#A0B8C5"   # Deeper Serenity for hover
+COLOR_ACCENT = "#E1A1C3"      # Deeper Rose Quartz for active elements
 
 FONT_MAIN = "Segoe UI"
 
@@ -55,35 +56,35 @@ class AestheticYogaApp:
         return files
 
     def setup_ui(self):
-        # Header Banner
-        header = tk.Frame(self.root, bg=COLOR_PRIMARY, height=60)
+        # Header Banner - Clean, minimal web-style navbar
+        header = tk.Frame(self.root, bg=COLOR_CARD, height=65)
         header.pack(fill="x")
         header.pack_propagate(False)
 
         title_lbl = tk.Label(
-            header, text="❖  MINDFUL FLOW", font=(FONT_MAIN, 15, "bold"),
-            bg=COLOR_PRIMARY, fg="#FFFFFF"
+            header, text="❖  MINDFUL FLOW", font=(FONT_MAIN, 16, "bold"),
+            bg=COLOR_CARD, fg=COLOR_SERENITY
         )
         title_lbl.pack(expand=True)
 
-        # Main Card
-        card = tk.Frame(self.root, bg=COLOR_CARD, bd=0, highlightthickness=1, highlightbackground="#E0E4DC")
-        card.pack(fill="both", expand=True, padx=25, pady=15)
+        # Main Card - Flat, borderless container
+        card = tk.Frame(self.root, bg=COLOR_CARD, bd=0)
+        card.pack(fill="both", expand=True, padx=20, pady=15)
 
         self.pose_label = tk.Label(
-            card, text="Ready to Begin?", font=(FONT_MAIN, 14, "bold"),
+            card, text="Ready to Begin?", font=(FONT_MAIN, 15, "bold"),
             bg=COLOR_CARD, fg=COLOR_TEXT, wraplength=380, justify="center"
         )
         self.pose_label.pack(pady=(15, 5))
 
-        # Image Container
+        # --- IMAGE CONTAINER ---
         self.image_label = tk.Label(card, bg=COLOR_CARD)
         self.image_label.pack(pady=10)
         self.show_placeholder_image()
 
         self.timer_label = tk.Label(
-            card, text="--:--", font=(FONT_MAIN, 32, "bold"),
-            bg=COLOR_CARD, fg=COLOR_PRIMARY
+            card, text="--:--", font=(FONT_MAIN, 34, "bold"),
+            bg=COLOR_CARD, fg=COLOR_SERENITY
         )
         self.timer_label.pack(pady=5)
 
@@ -93,37 +94,37 @@ class AestheticYogaApp:
         )
         self.status_label.pack(pady=(0, 10))
 
-        # Main Action Button
+        # Main Action Button - Rounded appearance flat button
         self.start_button = tk.Button(
             card, text="START SESSION", font=(FONT_MAIN, 10, "bold"),
             bg=COLOR_BTN, fg="white", activebackground=COLOR_BTN_HOVER, activeforeground="white",
-            relief="flat", cursor="hand2", padx=20, pady=6, command=self.toggle_session
+            relief="flat", cursor="hand2", padx=25, pady=8, command=self.toggle_session
         )
         self.start_button.pack(pady=10)
 
-        # Music Controls Frame
-        music_card = tk.Frame(self.root, bg=COLOR_CARD, highlightthickness=1, highlightbackground="#E0E4DC")
-        music_card.pack(fill="x", padx=25, pady=(0, 15))
+        # Music Controls Card - Soft pastel web card style
+        music_card = tk.Frame(self.root, bg=COLOR_CARD, bd=0)
+        music_card.pack(fill="x", padx=20, pady=(0, 20))
 
         self.song_label = tk.Label(
             music_card, text=self.get_current_song_name(), font=(FONT_MAIN, 9),
             bg=COLOR_CARD, fg=COLOR_SUBTEXT
         )
-        self.song_label.pack(pady=(8, 4))
+        self.song_label.pack(pady=(10, 4))
 
         btn_frame = tk.Frame(music_card, bg=COLOR_CARD)
-        btn_frame.pack(pady=(0, 8))
+        btn_frame.pack(pady=(0, 10))
 
         btn_style = {
             "font": (FONT_MAIN, 9), "bg": COLOR_BG, "fg": COLOR_TEXT,
-            "activebackground": COLOR_ACCENT, "activeforeground": "white",
-            "relief": "flat", "width": 7, "cursor": "hand2"
+            "activebackground": COLOR_ROSE, "activeforeground": COLOR_TEXT,
+            "relief": "flat", "width": 8, "cursor": "hand2"
         }
 
-        tk.Button(btn_frame, text="⏮ Prev", command=self.prev_song, **btn_style).grid(row=0, column=0, padx=3)
+        tk.Button(btn_frame, text="⏮ Prev", command=self.prev_song, **btn_style).grid(row=0, column=0, padx=4)
         self.play_btn = tk.Button(btn_frame, text="▶ Play", command=self.toggle_music, **btn_style)
-        self.play_btn.grid(row=0, column=1, padx=3)
-        tk.Button(btn_frame, text="Next ⏭", command=self.next_song, **btn_style).grid(row=0, column=2, padx=3)
+        self.play_btn.grid(row=0, column=1, padx=4)
+        tk.Button(btn_frame, text="Next ⏭", command=self.next_song, **btn_style).grid(row=0, column=2, padx=4)
 
     # --- IMAGE HELPERS ---
     def load_pose_image(self, filename):
@@ -141,8 +142,8 @@ class AestheticYogaApp:
 
     def show_placeholder_image(self, text="🧘"):
         self.image_label.config(
-            image="", text=text, font=(FONT_MAIN, 40),
-            fg=COLOR_ACCENT, bg=COLOR_CARD, width=12, height=3
+            image="", text=text, font=(FONT_MAIN, 42),
+            fg=COLOR_ROSE, bg=COLOR_CARD, width=10, height=3
         )
 
     # --- SESSION CONTROL ---
@@ -150,7 +151,7 @@ class AestheticYogaApp:
         if not self.running:
             self.running = True
             self.current_pose_idx = 0
-            self.start_button.config(text="STOP SESSION", bg="#C86D61")
+            self.start_button.config(text="STOP SESSION", bg=COLOR_ACCENT)
             self.start_pose()
             if self.playlist and not pygame.mixer.music.get_busy():
                 self.play_music()
