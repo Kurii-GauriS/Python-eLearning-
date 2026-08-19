@@ -9,7 +9,7 @@ MUSIC_FOLDER = "C:/Users/gauri/Desktop/Python-eLearning-/music"
 
 # Each pose includes: ("Pose Name", Duration in seconds, "image_filename.png")
 YOGA_POSES = [
-    ("Mountain Pose (Tadasana)", 10, "mountain.png"),
+    ("Mountain Pose (Tadasana)", 60, "mountain.png"),
     ("Downward-Facing Dog (Adho Mukha Svanasana)", 15, "downward_dog.png"),
     ("Warrior I (Virabhadrasana I)", 15, "warrior1.png"),
     ("Tree Pose (Vrksasana)", 10, "tree.png"),
