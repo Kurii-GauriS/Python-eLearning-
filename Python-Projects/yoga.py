@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 import pygame
 
 # --- CONFIGURATION ---
-MUSIC_FOLDER = "."
+MUSIC_FOLDER = "C:/Users/gauri/Desktop/Python-eLearning-/music"
 
 # Each pose includes: ("Pose Name", Duration in seconds, "image_filename.png")
 YOGA_POSES = [
@@ -17,13 +17,13 @@ YOGA_POSES = [
 ]
 
 # --- SVT AESTHETIC PALETTE (Rose Quartz & Serenity) ---
-COLOR_BG = "#FDF6F7"          # Soft off-white with rose tint
+COLOR_BG = "#E85F74"          # Soft off-white with rose tint
 COLOR_CARD = "#FFFFFF"        # Pure white
-COLOR_SERENITY = "#B5C9D4"    # SVT Serenity (Soft Pastel Blue)
-COLOR_ROSE = "#F7C8E0"        # SVT Rose Quartz (Soft Pastel Pink)
+COLOR_SERENITY = "#78C4ED"    # SVT Serenity (Soft Pastel Blue)
+COLOR_ROSE = "#FC5E5E"        # SVT Rose Quartz (Soft Pastel Pink)
 COLOR_TEXT = "#333333"        # Soft dark charcoal
 COLOR_SUBTEXT = "#888888"     # Muted grey
-COLOR_BTN = "#B5C9D4"         # Serenity button
+COLOR_BTN = "#C881C8"         # Serenity button
 COLOR_BTN_HOVER = "#A0B8C5"   # Deeper Serenity for hover
 COLOR_ACCENT = "#E1A1C3"      # Deeper Rose Quartz for active elements
 
