@@ -9,11 +9,11 @@ MUSIC_FOLDER = "C:/Users/gauri/Desktop/Python-eLearning-/music"
 
 # Each pose includes: ("Pose Name", Duration in seconds, "image_filename.png")
 YOGA_POSES = [
-    ("Mountain Pose (Tadasana)", 60, "mountain.png"),
-    ("Downward-Facing Dog (Adho Mukha Svanasana)", 15, "downward_dog.png"),
-    ("Warrior I (Virabhadrasana I)", 15, "warrior1.png"),
-    ("Tree Pose (Vrksasana)", 10, "tree.png"),
-    ("Child's Pose (Balasana)", 20, "childs_pose.png")
+    ("Mountain Pose (Tadasana)", 120, "mountain.png"),
+    ("Downward-Facing Dog (Adho Mukha Svanasana)", 150, "downward_dog.png"),
+    ("Warrior I (Virabhadrasana I)", 150, "warrior1.png"),
+    ("Tree Pose (Vrksasana)", 120, "tree.png"),
+    ("Child's Pose (Balasana)", 120, "childs_pose.png")
 ]
 
 # --- SVT AESTHETIC PALETTE (Rose Quartz & Serenity) ---
