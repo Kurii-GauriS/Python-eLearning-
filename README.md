@@ -42,3 +42,7 @@ This repository will be updated as I progress through more Python topics.
 
 **Learning in public 🐍💻**
 And I would not over-engineer this repo right now. Since you're learning at full speed, just keep adding folders/topics as you learn.
+## PROJECT CREATED
+Yoga.py
+- To open it type in powershell terminal 
+- [python Python-Projects\yoga.py]
