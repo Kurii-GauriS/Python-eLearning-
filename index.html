@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gauri's Coding Learning Hub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            background: #0d1117;
+            color: #f0f6fc;
+            min-height: 100vh;
+        }
+
+        /* ---------------- HEADER ---------------- */
+
+        header {
+            padding: 60px 20px 40px;
+            text-align: center;
+            background:
+                radial-gradient(circle at top left, #3b1d5a, transparent 35%),
+                radial-gradient(circle at top right, #163d5c, transparent 35%);
+        }
+
+        .emoji {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        header h1 span {
+            color: #ff7ac8;
+        }
+
+        header p {
+            color: #9da7b3;
+            font-size: 1.05rem;
+        }
+
+        /* ---------------- STATS ---------------- */
+
+        .stats {
+            width: min(1000px, 90%);
+            margin: 20px auto 40px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stat {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            border-color: #ff7ac8;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff7ac8;
+        }
+
+        .stat-label {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        /* ---------------- SEARCH ---------------- */
+
+        .search-container {
+            width: min(1000px, 90%);
+            margin: auto;
+            position: relative;
+        }
+
+        #search {
+            width: 100%;
+            padding: 17px 22px;
+
+            border-radius: 30px;
+            border: 1px solid #30363d;
+
+            background: #161b22;
+            color: white;
+
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #search:focus {
+            border-color: #ff7ac8;
+            box-shadow: 0 0 15px rgba(255, 122, 200, 0.2);
+        }
+
+        /* ---------------- MAIN ---------------- */
+
+        main {
+            width: min(1100px, 90%);
+            margin: 40px auto 80px;
+        }
+
+        .category {
+            margin-bottom: 35px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 18px 22px;
+
+            background: #161b22;
+            border: 1px solid #30363d;
+
+            border-radius: 18px;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .category-header:hover {
+            border-color: #ff7ac8;
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .category-icon {
+            font-size: 1.6rem;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+        }
+
+        .category.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+
+            margin-top: 18px;
+
+            max-height: 1000px;
+            overflow: hidden;
+
+            transition: 0.4s ease;
+        }
+
+        .category:not(.open) .cards {
+            max-height: 0;
+            margin-top: 0;
+            opacity: 0;
+        }
+
+        /* ---------------- CARDS ---------------- */
+
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 18px;
+
+            padding: 22px;
+
+            text-decoration: none;
+            color: white;
+
+            position: relative;
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: #ff7ac8;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            color: #8b949e;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .file-type {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: #21262d;
+            color: #ff7ac8;
+
+            font-size: 0.75rem;
+        }
+
+        /* ---------------- SPECIAL CARD ---------------- */
+
+        .music-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    #211329,
+                    #111827
+                );
+
+            border-color: #8e44ad;
+        }
+
+        .music-card:hover {
+            border-color: #d88cff;
+        }
+
+        /* ---------------- FOOTER ---------------- */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+
+            color: #6e7681;
+
+            border-top: 1px solid #21262d;
+        }
+
+        footer span {
+            color: #ff7ac8;
+        }
+
+        /* ---------------- RESPONSIVE ---------------- */
+
+        @media (max-width: 800px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding-top: 40px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            color: #8b949e;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="emoji">💻✨</div>
+
+        <h1>
+            My <span>Coding</span> Learning Hub
+        </h1>
+
+        <p>
+            A collection of my Python, Web Development & Programming journey
+        </p>
+
+    </header>
+
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Python Lessons</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Python Projects</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-number">6</span>
+            <span class="stat-label">Languages</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Things to Learn</span>
+        </div>
+
+    </section>
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="search-container">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="🔎 Search lessons, projects or languages..."
+        >
+
+    </div>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <main>
+
+
+        <!-- PYTHON LEARNING -->
+
+        <section class="category open">
+
+            <div class="category-header">
+
+                <div class="category-title">
+                    <span class="category-icon">🐍</span>
+                    Python Learning
+                </div>
+
+                <span class="arrow">▼</span>
+
+            </div>
+
+
+            <div class="cards">
+
+                <a
+                    class="card"
+                    href="Python-learning/Arithmetic%20Operators%20and%20Strings.py"
+                >
+
+                    <div class="card-icon">➗</div>
+
+                    <h3>Arithmetic Operators & Strings</h3>
+
+                    <p>
+                        Practice arithmetic operations and working
+                        with strings in Python.
+                    </p>
+
+                    <span class="file-type">PYTHON</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Python-learning/exercises.py"
+                >
+
+                    <div class="card-icon">📝</div>
+
+                    <h3>Python Exercises</h3>
+
+                    <p>
+                        Practice exercises and coding problems
+                        while learning Python.
+                    </p>
+
+                    <span class="file-type">PYTHON</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Python-learning/placeholders.py"
+                >
+
+                    <div class="card-icon">🧩</div>
+
+                    <h3>Placeholders</h3>
+
+                    <p>
+                        Learn how placeholders work with Python
+                        strings and formatting.
+                    </p>
+
+                    <span class="file-type">PYTHON</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Python-learning/variables_operator_strings.py"
+                >
+
+                    <div class="card-icon">📦</div>
+
+                    <h3>Variables, Operators & Strings</h3>
+
+                    <p>
+                        Explore variables, operators and string
+                        manipulation.
+                    </p>
+
+                    <span class="file-type">PYTHON</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PYTHON PROJECTS -->
+
+        <section class="category open">
+
+            <div class="category-header">
+
+                <div class="category-title">
+                    <span class="category-icon">🚀</span>
+                    Python Projects
+                </div>
+
+                <span class="arrow">▼</span>
+
+            </div>
+
+
+            <div class="cards">
+
+                <a
+                    class="card"
+                    href="Python-Projects/calculator.py"
+                >
+
+                    <div class="card-icon">🧮</div>
+
+                    <h3>Calculator</h3>
+
+                    <p>
+                        A simple calculator project created
+                        using Python.
+                    </p>
+
+                    <span class="file-type">PROJECT</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Python-Projects/digital-clock.py"
+                >
+
+                    <div class="card-icon">⏰</div>
+
+                    <h3>Digital Clock</h3>
+
+                    <p>
+                        A Python digital clock project.
+                    </p>
+
+                    <span class="file-type">PROJECT</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Python-Projects/yoga.py"
+                >
+
+                    <div class="card-icon">🧘</div>
+
+                    <h3>Yoga App</h3>
+
+                    <p>
+                        A Python project exploring an interactive
+                        yoga application.
+                    </p>
+
+                    <span class="file-type">PROJECT</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- WEB & OTHER LANGUAGES -->
+
+        <section class="category open">
+
+            <div class="category-header">
+
+                <div class="category-title">
+                    <span class="category-icon">🌐</span>
+                    HTML • CSS • JavaScript • C • C++ • C#
+                </div>
+
+                <span class="arrow">▼</span>
+
+            </div>
+
+
+            <div class="cards">
+
+                <a
+                    class="card"
+                    href="Html_C_Css_C#_JS/html.html"
+                >
+
+                    <div class="card-icon">🌐</div>
+
+                    <h3>HTML</h3>
+
+                    <p>
+                        HTML experiments and practice files.
+                    </p>
+
+                    <span class="file-type">HTML</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Html_C_Css_C#_JS/style.css"
+                >
+
+                    <div class="card-icon">🎨</div>
+
+                    <h3>CSS</h3>
+
+                    <p>
+                        CSS styling and UI experiments.
+                    </p>
+
+                    <span class="file-type">CSS</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Html_C_Css_C#_JS/javascript.js"
+                >
+
+                    <div class="card-icon">⚡</div>
+
+                    <h3>JavaScript</h3>
+
+                    <p>
+                        JavaScript practice and interactive
+                        functionality.
+                    </p>
+
+                    <span class="file-type">JAVASCRIPT</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Html_C_Css_C#_JS/Css.c"
+                >
+
+                    <div class="card-icon">🔵</div>
+
+                    <h3>C</h3>
+
+                    <p>
+                        C programming practice.
+                    </p>
+
+                    <span class="file-type">C</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Html_C_Css_C#_JS/css.c%2B%2B"
+                >
+
+                    <div class="card-icon">🟣</div>
+
+                    <h3>C++</h3>
+
+                    <p>
+                        C++ programming practice and experiments.
+                    </p>
+
+                    <span class="file-type">C++</span>
+
+                </a>
+
+
+                <a
+                    class="card"
+                    href="Html_C_Css_C#_JS/css.cs"
+                >
+
+                    <div class="card-icon">🟢</div>
+
+                    <h3>C#</h3>
+
+                    <p>
+                        C# programming practice.
+                    </p>
+
+                    <span class="file-type">C#</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MUSIC -->
+
+        <section class="category open">
+
+            <div class="category-header">
+
+                <div class="category-title">
+                    <span class="category-icon">🎵</span>
+                    Music
+                </div>
+
+                <span class="arrow">▼</span>
+
+            </div>
+
+
+            <div class="cards">
+
+                <a class="card music-card" href="music/">
+
+                    <div class="card-icon">🎧</div>
+
+                    <h3>Music Collection</h3>
+
+                    <p>
+                        Open the music folder and explore
+                        the audio files in this project.
+                    </p>
+
+                    <span class="file-type">MUSIC</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- README -->
+
+        <section class="category open">
+
+            <div class="category-header">
+
+                <div class="category-title">
+                    <span class="category-icon">📖</span>
+                    Documentation
+                </div>
+
+                <span class="arrow">▼</span>
+
+            </div>
+
+
+            <div class="cards">
+
+                <a class="card" href="README.md">
+
+                    <div class="card-icon">📚</div>
+
+                    <h3>README</h3>
+
+                    <p>
+                        Learn more about this repository,
+                        projects and learning journey.
+                    </p>
+
+                    <span class="file-type">README</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <div class="no-results" id="noResults">
+            😭 Nothing found. Try another search!
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        Made with 💗, ☕ & lots of code
+
+        <br>
+
+        <span>Keep learning. Keep building. 🚀</span>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* ---------- CATEGORY TOGGLE ---------- */
+
+        const categories =
+            document.querySelectorAll(".category");
+
+        categories.forEach(category => {
+
+            const header =
+                category.querySelector(".category-header");
+
+            header.addEventListener("click", () => {
+
+                category.classList.toggle("open");
+
+            });
+
+        });
+
+
+        /* ---------- SEARCH ---------- */
+
+        const search =
+            document.getElementById("search");
+
+        const cards =
+            document.querySelectorAll(".card");
+
+        const noResults =
+            document.getElementById("noResults");
+
+
+        search.addEventListener("input", () => {
+
+            const value =
+                search.value.toLowerCase().trim();
+
+            let found = false;
+
+
+            cards.forEach(card => {
+
+                const text =
+                    card.innerText.toLowerCase();
+
+                if (text.includes(value)) {
+
+                    card.style.display = "block";
+
+                    found = true;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            noResults.style.display =
+                found ? "none" : "block";
+
+
+            /* Automatically open matching categories */
+
+            categories.forEach(category => {
+
+                const visibleCards =
+                    [...category.querySelectorAll(".card")]
+                    .some(card =>
+                        card.style.display !== "none"
+                    );
+
+                if (value && visibleCards) {
+
+                    category.classList.add("open");
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
