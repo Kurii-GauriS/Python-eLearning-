@@ -307,6 +307,32 @@
             color: #8b949e;
             display: none;
         }
+        /* ---------------- EXTERNAL PROJECT ---------------- */
+
+.external-card {
+    background:
+        linear-gradient(
+            135deg,
+            #25152d,
+            #171b2b
+        );
+
+    border-color: #ff7ac8;
+}
+
+.external-card:hover {
+    transform: translateY(-10px) scale(1.02);
+
+    border-color: #ffb6df;
+
+    box-shadow:
+        0 15px 40px rgba(255, 122, 200, 0.18);
+}
+
+.external-card .file-type {
+    background: rgba(255, 122, 200, 0.1);
+    color: #ff9bd5;
+}
     </style>
 </head>
 
@@ -550,6 +576,50 @@
 
         </section>
 
+        <!-- EXTERNAL PROJECTS -->
+
+<section class="category open">
+
+    <div class="category-header">
+
+        <div class="category-title">
+            <span class="category-icon">🌸</span>
+            My Other Projects
+        </div>
+
+        <span class="arrow">▼</span>
+
+    </div>
+
+    <div class="cards">
+
+        <a
+            class="card external-card"
+            href="https://sample-code-nine.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="card-icon">✨</div>
+
+            <h3>Gauri's Little Code World</h3>
+
+            <p>
+                My personal coding playground filled with
+                tiny projects, experiments and things I build
+                while learning.
+            </p>
+
+            <span class="file-type">
+                🌐 LIVE WEBSITE ↗
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
 
 
         <!-- WEB & OTHER LANGUAGES -->
@@ -766,6 +836,65 @@
         </div>
 
     </main>
+
+    <section class="category open">
+
+    <div class="category-header">
+        <div class="category-title">
+            <span class="category-icon">🌸</span>
+            My Project World
+        </div>
+        <span class="arrow">▼</span>
+    </div>
+
+    <div class="cards">
+
+        <!-- Little Code World -->
+        <a
+            class="card external-card"
+            href="https://sample-code-nine.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="card-icon">✨</div>
+
+            <h3>Gauri's Little Code World</h3>
+
+            <p>
+                My collection of small coding projects,
+                experiments and creative web ideas.
+            </p>
+
+            <span class="file-type">
+                🌐 LIVE WEBSITE ↗
+            </span>
+        </a>
+
+
+        <!-- YouTube -->
+        <a
+            class="card external-card"
+            href="https://www.youtube.com/@Seungmin-skz8-ot8"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="card-icon">🎬</div>
+
+            <h3>Codewithseungmo</h3>
+
+            <p>
+                Project demos, coding experiments and
+                short videos showing what I build.
+            </p>
+
+            <span class="file-type">
+                ▶ YOUTUBE ↗
+            </span>
+        </a>
+
+    </div>
+
+</section>
 
 
     <!-- ================= FOOTER ================= -->
